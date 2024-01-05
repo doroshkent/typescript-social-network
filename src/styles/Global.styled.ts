@@ -26,12 +26,13 @@ export const GlobalStyle = createGlobalStyle`
   
   a {
     text-decoration: none;
-    cursor: pointer;
+    color: white;
   }
   
   button {
     border: unset;
     background-color: unset;
+    cursor: pointer;
   }
   
   p {
