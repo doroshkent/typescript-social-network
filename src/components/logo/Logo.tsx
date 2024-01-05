@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import logo from 'assets/img/logo.png'
 
-export const Logo = () => {
+export const Logo: React.FC = () => {
   return (
     <LogoLink>
       <LogoImg src={ logo }/>

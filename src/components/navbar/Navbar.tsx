@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const navItems = ["Profile", "Messages", "News", "Music", "Settings"]
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
   return (
     <StyledNavbar>
       <ul>
