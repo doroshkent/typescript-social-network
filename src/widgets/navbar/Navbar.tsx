@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
       <ul>
         {navItems.map((i, index )=> (
           <li key={index}>
-            <a href="#">{i}</a>
+            <a href="widgets/navbar/Navbar#">{i}</a>
           </li>
         ))}
       </ul>
