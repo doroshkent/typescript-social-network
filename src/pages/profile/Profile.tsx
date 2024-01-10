@@ -7,7 +7,7 @@ export const Profile: React.FC = () => {
   return (
     <StyledProfile>
       <Description>
-        <img src={ avatar } alt="profile" />
+        <img src={ avatar } alt="avatar" />
         <MainInfo>
           <h1>Anastasiya</h1>
           and another info
@@ -19,8 +19,7 @@ export const Profile: React.FC = () => {
 };
 
 const StyledProfile = styled.section`
-  grid-area: content;
-  background-color: #b8d9c8;
+
 `
 
 const Description = styled.section`
