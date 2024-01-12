@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from "styled-components";
 import { v1 } from "uuid";
+import { S } from "./Navbar_Styles"
 
 type NavItemsType = {
   id: string
@@ -38,19 +38,14 @@ const navItems: Array<NavItemsType> = [
 
 export const Navbar: React.FC = () => {
   return (
-    <StyledNavbar>
+    <S.Navbar>
       <ul>
         { navItems.map( (i) => (
           <li key={ i.id }>
-            <a href={i.href}>{ i.title }</a>
+            <S.Link to={i.href}>{ i.title }</S.Link>
           </li>
         ) ) }
       </ul>
-    </StyledNavbar>
+    </S.Navbar>
   );
 };
-
-const StyledNavbar = styled.nav`
-  grid-area: nav;
-  background-color: #1068d5;
-`
