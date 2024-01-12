@@ -8,22 +8,9 @@ import olga from "assets/img/avatars/Olga.png";
 import mariya from "assets/img/avatars/Masha.png";
 import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
-import { FaTelegramPlane } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-
-type UserType = {
-  id: string
-  name: string
-  avatar: string
-  isOnline: boolean
-}
-
-type MessageType = {
-  id: string,
-  content: string,
-  isSent: boolean,
-  authorAvatar: string
-}
+import { DialogsUser, UserType } from "pages/dialogs/dialogsUser/DialogsUser";
+import { Dialog } from "pages/dialogs/dialog/Dialog";
+import { MessageType } from "pages/dialogs/dialog/message/Message";
 
 const dialogsUsers: Array<UserType> = [
   {
@@ -118,43 +105,13 @@ const messages: Array<MessageType> = [
 export const Dialogs: React.FC = () => {
   return (
     <S.Dialogs>
-      <SectionTitle>
-        Messages
-      </SectionTitle>
-      <S.MessagesBox>
-        <S.MessagesHeader>
-          { dialogsUsers.map( u => (
-            <S.UserAvatar as={NavLink} key={ u.id } to={ `/dialogs/${u.id}` }>
-              <img src={ u.avatar } alt="avatar"/>
-              <span>{ u.name }</span>
-              <S.Status isOnline={ u.isOnline } />
-            </S.UserAvatar>
-          ) ) }
-        </S.MessagesHeader>
-        <S.MessagesContent>
-          <S.ChatHeader>
-            <p>
-              last seen online today at 12:53
-            </p>
-          </S.ChatHeader>
-          <S.ChatContent>
-            <S.ChattingArea>
-              { messages.map( m => (
-              <S.Message key={ m.id } isSent={ m.isSent }>
-                <figure>
-                  <img src={ m.authorAvatar } alt="avatar"/>
-                </figure>
-                <p>{ m.content }</p>
-              </S.Message>
-            ) ) }
-            </S.ChattingArea>
-          </S.ChatContent>
-          <S.SendMessageForm>
-            <textarea rows={1} placeholder={"say something..."} />
-            <button><FaTelegramPlane /></button>
-          </S.SendMessageForm>
-        </S.MessagesContent>
-      </S.MessagesBox>
+      <SectionTitle>Messages</SectionTitle>
+      <S.Box>
+        <S.Header>
+          { dialogsUsers.map( u => <DialogsUser key={ u.id }  { ...u } /> ) }
+        </S.Header>
+        <Dialog messages={ messages } />
+      </S.Box>
     </S.Dialogs>
   );
 };
