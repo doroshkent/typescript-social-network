@@ -9,6 +9,7 @@ import mariya from "assets/img/avatars/Masha.png";
 import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
 import { FaTelegramPlane } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 type UserType = {
   id: string
@@ -123,7 +124,7 @@ export const Dialogs: React.FC = () => {
       <S.MessagesBox>
         <S.MessagesHeader>
           { dialogsUsers.map( u => (
-            <S.UserAvatar key={ u.id }>
+            <S.UserAvatar as={NavLink} key={ u.id } to={ `/dialogs/${u.id}` }>
               <img src={ u.avatar } alt="avatar"/>
               <span>{ u.name }</span>
               <S.Status isOnline={ u.isOnline } />

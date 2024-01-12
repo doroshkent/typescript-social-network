@@ -34,6 +34,12 @@ const UserAvatar = styled.div`
   vertical-align: middle;
   width: 85px;
   margin-bottom: 8px;
+  color: #13153e;
+
+  &.active {
+    color: #088dcd;
+    font-weight: 500;
+  }
 
   img {
     border: 1px solid #aaa;
@@ -50,11 +56,6 @@ const UserAvatar = styled.div`
     font-weight: 700;
     margin-top: 4px;
     width: 100%;
-
-    &.active {
-      color: #088dcd;
-      font-weight: 500;
-    }
   }
 `
 
