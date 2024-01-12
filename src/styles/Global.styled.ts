@@ -40,4 +40,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 18px;
     font-weight: 400;
   }
+  
+  img {
+    vertical-align: middle;
+    max-height: 100%;
+    max-width: 100%;
+  }
 `
