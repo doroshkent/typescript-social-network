@@ -1,33 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
-import avatar from "assets/img/photo.webp"
 import { Posts } from "pages/profile/posts/Posts";
+import { ProfileInfo } from "pages/profile/profileInfo/ProfileInfo";
 
 export const Profile: React.FC = () => {
   return (
     <StyledProfile>
-      <Description>
-        <img src={ avatar } alt="avatar" />
-        <MainInfo>
-          <h1>Anastasiya</h1>
-          and another info
-        </MainInfo>
-      </Description>
+      <ProfileInfo />
       <Posts />
     </StyledProfile>
   );
 };
 
 const StyledProfile = styled.section`
-
-`
-
-const Description = styled.section`
-  img {
-    height: 200px;
-  }
-`
-
-const MainInfo = styled.div`
 
 `
