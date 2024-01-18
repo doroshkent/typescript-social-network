@@ -16,7 +16,7 @@ type DialogUserPropsType = {
   isOnline: boolean
 }
 
-export const DialogsUser: React.FC<DialogUserPropsType> = ({ id, name, avatar, isOnline }) => {
+export const DialogUser: React.FC<DialogUserPropsType> = ({ id, name, avatar, isOnline }) => {
   return (
     <S.User as={ NavLink } to={ `/dialogs/${ id }` }>
       <img src={ avatar } alt="avatar" />

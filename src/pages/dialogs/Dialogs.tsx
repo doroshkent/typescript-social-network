@@ -8,7 +8,7 @@ import olga from "assets/img/avatars/Olga.png";
 import mariya from "assets/img/avatars/Masha.png";
 import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
-import { DialogsUser, UserType } from "pages/dialogs/dialogsUser/DialogsUser";
+import { DialogUser, UserType } from "pages/dialogs/dialogUser/DialogUser";
 import { Dialog } from "pages/dialogs/dialog/Dialog";
 import { MessageType } from "pages/dialogs/dialog/message/Message";
 
@@ -108,7 +108,7 @@ export const Dialogs: React.FC = () => {
       <SectionTitle>Messages</SectionTitle>
       <S.Box>
         <S.Header>
-          { dialogsUsers.map( u => <DialogsUser key={ u.id }  { ...u } /> ) }
+          { dialogsUsers.map( u => <DialogUser key={ u.id }  { ...u } /> ) }
         </S.Header>
         <Dialog messages={ messages } />
       </S.Box>
