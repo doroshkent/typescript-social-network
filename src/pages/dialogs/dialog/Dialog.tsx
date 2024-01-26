@@ -1,10 +1,11 @@
 import React from 'react';
 import { S } from "pages/dialogs/dialog/Dialog_Styles";
 import { FaTelegramPlane } from "react-icons/fa";
-import { Message, MessageType } from "pages/dialogs/dialog/message/Message";
+import { Message } from "pages/dialogs/dialog/message/Message";
+import { MessageType } from "redux/state";
 
 type DialogPropsType = {
-  messages: Array<MessageType>
+  messages: MessageType[]
 }
 
 export const Dialog: React.FC<DialogPropsType> = ({ messages }) => {

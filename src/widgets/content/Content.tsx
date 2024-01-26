@@ -6,17 +6,20 @@ import { News } from "pages/news/News";
 import { Music } from "pages/music/Music";
 import { Settings } from "pages/settings/Settings";
 import { S } from "./Content_Styles";
-import { ProfileStateType } from "redux/state";
+import { DialogsStateType, ProfileStateType } from "redux/state";
 
 type ContentPropsType = {
   profilePage: ProfileStateType
+  dialogsPage: DialogsStateType
 }
 
-export const Content: React.FC<ContentPropsType> = ({ profilePage }) => {
+export const Content: React.FC<ContentPropsType> = ({ profilePage, dialogsPage }) => {
   return (
     <S.Content>
-      <Route path="/profile" render={ () => <Profile state={ profilePage } /> } />
-      <Route path="/dialogs" render={ () => <Dialogs /> } />
+      <Route path="/profile"
+             render={ () => <Profile state={ profilePage } /> } />
+      <Route path="/dialogs"
+             render={ () => <Dialogs dialogs={ dialogsPage.dialogs } messages={ dialogsPage.messages } /> } />
       <Route path="/news" render={ () => <News /> } />
       <Route path="/music" render={ () => <Music /> } />
       <Route path="/settings" render={ () => <Settings /> } />

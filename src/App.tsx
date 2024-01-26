@@ -16,7 +16,7 @@ const App: React.FC<AppPropsType> = ({ state }) => {
       <GridAppWrapper>
         <Header />
         <Navbar navItems={ state.navbar.navItems } />
-        <Content profilePage={ state.profilePage } />
+        <Content profilePage={ state.profilePage } dialogsPage={ state.dialogsPage } />
       </GridAppWrapper>
     </div>
   );

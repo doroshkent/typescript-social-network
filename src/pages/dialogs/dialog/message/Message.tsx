@@ -1,13 +1,6 @@
 import React from 'react';
 import { S } from "pages/dialogs/dialog/Dialog_Styles";
 
-export type MessageType = {
-  id: string,
-  content: string,
-  isSent: boolean,
-  authorAvatar: string
-}
-
 type MessagePropsType = {
   content: string
   authorAvatar: string
