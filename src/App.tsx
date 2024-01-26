@@ -10,13 +10,13 @@ type AppPropsType = {
   state: StateRootType
 }
 
-const App: React.FC<AppPropsType> = ({state}) => {
+const App: React.FC<AppPropsType> = ({ state }) => {
   return (
     <div className="App">
       <GridAppWrapper>
         <Header />
-        <Navbar />
-        <Content state={state} />
+        <Navbar navItems={ state.navbar.navItems } />
+        <Content profilePage={ state.profilePage } />
       </GridAppWrapper>
     </div>
   );

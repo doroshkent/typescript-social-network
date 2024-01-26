@@ -1,42 +1,12 @@
 import React from 'react';
-import { v1 } from "uuid";
-import { S } from "./Navbar_Styles"
+import { S } from "./Navbar_Styles";
+import { NavItemsType } from "redux/state";
 
-type NavItemsType = {
-  id: string
-  title: string
-  href: string
+type NavbarPropsType = {
+  navItems: NavItemsType[]
 }
 
-const navItems: Array<NavItemsType> = [
-  {
-    title: "Profile",
-    id: v1(),
-    href: "/profile"
-  },
-  {
-    title: "Messages",
-    id: v1(),
-    href: "/dialogs"
-  },
-  {
-    title: "News",
-    id: v1(),
-    href: "/news"
-  },
-  {
-    title: "Music",
-    id: v1(),
-    href: "/music"
-  },
-  {
-    title: "Settings",
-    id: v1(),
-    href: "/settings"
-  }
-];
-
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<NavbarPropsType> = ({navItems}) => {
   return (
     <S.Navbar>
       <ul>
