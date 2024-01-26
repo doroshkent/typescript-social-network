@@ -80,7 +80,7 @@ const Message = styled.li<{ isSent: boolean }>`
   }
 `
 
-const SendMessageForm = styled.form`
+const SendMessageArea = styled.div`
   display: inline-block;
   position: relative;
   width: 94%;
@@ -89,15 +89,12 @@ const SendMessageForm = styled.form`
     border: 1px solid #eaeaea;
     border-radius: 50px;
     box-sizing: content-box;
-    color: #7f7f7f;
     display: inline-block;
-    line-height: 50px;
     overflow: hidden;
-    padding-left: 46px;
+    padding: 10px 70px 10px 10px;
     resize: none;
     vertical-align: middle;
-    width: 92%;
-    padding-right: 50px;
+    width: 95%;
   }
   
   button {
@@ -123,5 +120,5 @@ export const S = {
   Content,
   List,
   Message,
-  SendMessageForm,
+  SendMessageArea,
 }

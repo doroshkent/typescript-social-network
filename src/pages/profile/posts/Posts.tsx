@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { Post } from './post/Post';
-import { AddNewPostForm } from "pages/profile/posts/addNewPostForm/AddNewPostForm";
+import { AddNewItemForm } from "components/addNewItemForm/AddNewItemForm";
 import { PostType } from "redux/state";
 
 type PostsPropsType = {
@@ -12,7 +12,7 @@ export const Posts: React.FC<PostsPropsType> = ({posts}) => {
   return (
     <MyPosts>
       <h2>My Posts</h2>
-      <AddNewPostForm />
+      <AddNewItemForm btnTitle={"add new post"} />
       { posts.map( p => {
         return <Post key={ p.id } postContent={ p.content } likesCount={ p.likesCount } />
       } ) }
