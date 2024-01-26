@@ -7,7 +7,7 @@ import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
 
 // common state type
-export type StateRootType = {
+export type RootStateType = {
   profilePage: ProfileStateType
   navbar: NavbarStateType
   dialogsPage: DialogsStateType
@@ -55,7 +55,7 @@ export type UserType = {
   isOnline: boolean
 }
 
-export const state: StateRootType = {
+export const state: RootStateType = {
   profilePage: {
     posts: [
       { id: v4(), content: "My first post", likesCount: 3 },
