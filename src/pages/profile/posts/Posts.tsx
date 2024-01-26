@@ -2,21 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import { Post } from './post/Post';
 import { AddNewPostForm } from "pages/profile/posts/addNewPostForm/AddNewPostForm";
-import { v4 } from "uuid";
+import { PostType } from "redux/state";
 
-type PostType = {
-  id: string
-  content: string
-  likesCount: number
+type PostsPropsType = {
+  posts: PostType[]
 }
 
-const posts: Array<PostType> = [
-  { id: v4(), content: "My first post", likesCount: 3 },
-  { id: v4(), content: "Need your support", likesCount: 2 },
-  { id: v4(), content: "Love React", likesCount: 10 },
-]
-
-export const Posts: React.FC = () => {
+export const Posts: React.FC<PostsPropsType> = ({posts}) => {
   return (
     <MyPosts>
       <h2>My Posts</h2>
