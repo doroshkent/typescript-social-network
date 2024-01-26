@@ -3,10 +3,10 @@ import React from 'react';
 import { S } from "./Dialogs_Styles";
 import { DialogUser } from "pages/dialogs/dialogUser/DialogUser";
 import { Dialog } from "pages/dialogs/dialog/Dialog";
-import { MessageType, UserType } from "redux/state";
+import { MessageType, DialogType } from "redux/state";
 
 type DialogsPropsType = {
-  dialogs: UserType[]
+  dialogs: DialogType[]
   messages: MessageType[]
 }
 

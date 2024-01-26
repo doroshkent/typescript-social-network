@@ -17,7 +17,6 @@ export type RootStateType = {
 export type ProfileStateType = {
   posts: PostType[]
 }
-
 export type PostType = {
   id: string
   content: string
@@ -28,7 +27,6 @@ export type PostType = {
 export type NavbarStateType = {
   navItems: NavItemsType[]
 }
-
 export type NavItemsType = {
   id: string
   title: string
@@ -37,18 +35,16 @@ export type NavItemsType = {
 
 //dialogs page types
 export type DialogsStateType = {
-  dialogs: UserType[]
+  dialogs: DialogType[]
   messages: MessageType[]
 }
-
 export type MessageType = {
   id: string,
   content: string,
   isSent: boolean,
   authorAvatar: string
 }
-
-export type UserType = {
+export type DialogType = {
   id: string
   name: string
   avatar: string
