@@ -7,22 +7,12 @@ import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
 import { ProfileStateType } from "redux/profileReducer";
 import { DialogsStateType } from "redux/dialogsReducer";
+import { NavbarStateType } from "redux/sidebarReducer";
 
-// common state type
 export type RootStateType = {
   profilePage: ProfileStateType
   navbar: NavbarStateType
   dialogsPage: DialogsStateType
-}
-
-// navbar types
-export type NavbarStateType = {
-  navItems: NavItemsType[]
-}
-export type NavItemsType = {
-  id: string
-  title: string
-  href: string
 }
 
 export const state: RootStateType = {
