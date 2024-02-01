@@ -5,22 +5,13 @@ import olga from "assets/img/avatars/Olga.png";
 import mariya from "assets/img/avatars/Masha.png";
 import nikita from "assets/img/avatars/Nikita.png";
 import me from "assets/img/photo.webp";
+import { ProfileStateType } from "redux/profileReducer";
 
 // common state type
 export type RootStateType = {
   profilePage: ProfileStateType
   navbar: NavbarStateType
   dialogsPage: DialogsStateType
-}
-
-// profile page types
-export type ProfileStateType = {
-  posts: PostType[]
-}
-export type PostType = {
-  id: string
-  content: string
-  likesCount: number
 }
 
 // navbar types
