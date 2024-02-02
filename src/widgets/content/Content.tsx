@@ -6,7 +6,8 @@ import { News } from "pages/news/News";
 import { Music } from "pages/music/Music";
 import { Settings } from "pages/settings/Settings";
 import { S } from "./Content_Styles";
-import { DialogsStateType, ProfileStateType } from "redux/state";
+import { ProfileStateType } from "redux/profileReducer";
+import { DialogsStateType } from "redux/dialogsReducer";
 
 type ContentPropsType = {
   profilePage: ProfileStateType

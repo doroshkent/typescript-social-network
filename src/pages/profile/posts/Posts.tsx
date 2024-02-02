@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { Post } from './post/Post';
 import { AddNewItemForm } from "components/addNewItemForm/AddNewItemForm";
-import { PostType } from "redux/state";
+import { PostType } from "redux/profileReducer";
 
 type PostsPropsType = {
   posts: PostType[]

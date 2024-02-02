@@ -1,8 +1,8 @@
 import React from 'react';
 import { S } from "pages/dialogs/dialog/Dialog_Styles";
 import { Message } from "pages/dialogs/dialog/message/Message";
-import { MessageType } from "redux/state";
 import { AddNewItemForm } from "components/addNewItemForm/AddNewItemForm";
+import { MessageType } from "redux/dialogsReducer";
 
 type DialogPropsType = {
   messages: MessageType[]

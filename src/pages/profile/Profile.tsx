@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { Posts } from "pages/profile/posts/Posts";
 import { ProfileInfo } from "pages/profile/profileInfo/ProfileInfo";
-import { ProfileStateType } from "redux/state";
+import { ProfileStateType } from "redux/profileReducer";
 
 type ProfilePropsType = {
   state: ProfileStateType

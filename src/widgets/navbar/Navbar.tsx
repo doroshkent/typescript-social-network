@@ -1,6 +1,6 @@
 import React from 'react';
 import { S } from "./Navbar_Styles";
-import { NavItemsType } from "redux/state";
+import { NavItemsType } from "redux/sidebarReducer";
 
 type NavbarPropsType = {
   navItems: NavItemsType[]
