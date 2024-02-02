@@ -89,7 +89,7 @@ const initialState: DialogsStateType = {
 
 export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionsTypes): DialogsStateType => {
   switch (action.type) {
-    case "SEND-MESSAGE":
+    case "SEND-MESSAGE": {
       const newMessage: MessageType = {
         id: v1(),
         content: action.newMessageText,
@@ -98,9 +98,12 @@ export const dialogsReducer = (state: DialogsStateType = initialState, action: D
       }
       return {
         ...state,
-        messages: [...state.messages, newMessage]
+        messages: [ ...state.messages, newMessage ]
       }
-    default: return state
+    }
+    default: {
+      return state
+    }
   }
 }
 

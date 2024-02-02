@@ -6,9 +6,10 @@ import { MessageType } from "redux/dialogsReducer";
 
 type DialogPropsType = {
   messages: MessageType[]
+  sendMessage: (newMessageText: string) => void
 }
 
-export const Dialog: React.FC<DialogPropsType> = ({ messages }) => {
+export const Dialog: React.FC<DialogPropsType> = ({ messages, sendMessage }) => {
   return (
     <S.Dialog>
       <S.Header>
@@ -20,7 +21,7 @@ export const Dialog: React.FC<DialogPropsType> = ({ messages }) => {
         </S.List>
       </S.Content>
       <S.SendMessageArea>
-        <AddNewItemForm btnTitle={"send"} />
+        <AddNewItemForm btnTitle={"send"} addNewItem={sendMessage}/>
       </S.SendMessageArea>
     </S.Dialog>
   );

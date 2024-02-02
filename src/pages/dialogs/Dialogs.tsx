@@ -8,9 +8,10 @@ import { DialogType, MessageType } from "redux/dialogsReducer";
 type DialogsPropsType = {
   dialogs: DialogType[]
   messages: MessageType[]
+  sendMessage: (newMessageText: string) => void
 }
 
-export const Dialogs: React.FC<DialogsPropsType> = ({ dialogs, messages }) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({ dialogs, messages, sendMessage }) => {
   return (
     <S.Dialogs>
       <SectionTitle>Messages</SectionTitle>
@@ -18,7 +19,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({ dialogs, messages }) => {
         <S.Header>
           { dialogs.map( u => <DialogUser key={ u.id }  { ...u } /> ) }
         </S.Header>
-        <Dialog messages={ messages } />
+        <Dialog messages={ messages } sendMessage={sendMessage}/>
       </S.Box>
     </S.Dialogs>
   );
