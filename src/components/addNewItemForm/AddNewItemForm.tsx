@@ -3,21 +3,26 @@ import styled from "styled-components";
 
 type AddNewItemFormPropsType = {
   btnTitle: string
+  addNewItem: (newItemText: string) => void
 }
 
-export const AddNewItemForm: React.FC<AddNewItemFormPropsType> = ({btnTitle}) => {
+export const AddNewItemForm: React.FC<AddNewItemFormPropsType> = ({btnTitle, addNewItem}) => {
   const [ newItemText, setNewItemText ] = useState( '' );
   const onNewItemChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewItemText( e.currentTarget.value );
   }
+  const onAddNewItem = () => {
+    addNewItem(newItemText);
+
+  }
   return (
     <AddItemForm>
       <textarea value={ newItemText } onChange={ onNewItemChangeHandler } />
-      <button onClick={() => alert(newItemText)}>{btnTitle}</button>
+      <button onClick={onAddNewItem}>{btnTitle}</button>
     </AddItemForm>
   );
 };
 
-const AddItemForm = styled.form`
+const AddItemForm = styled.div`
 
 `

@@ -24,7 +24,7 @@ const initialState: ProfileStateType = {
 
 export const profileReducer = (state: ProfileStateType = initialState, action: ProfileActionsTypes): ProfileStateType => {
   switch (action.type) {
-    case "ADD-POST":
+    case "ADD-POST": {
       const newPost: PostType = {
         id: v4(),
         content: action.newPostText,
@@ -32,12 +32,15 @@ export const profileReducer = (state: ProfileStateType = initialState, action: P
       }
       return {
         ...state,
-        posts: [ newPost, ...state.posts]
+        posts: [ newPost, ...state.posts ]
       }
-    default: return state
+    }
+    default: {
+      return state
+    }
   }
 }
 
-export const addPostAC = (newPostText: string) => ({
-  type: "ADD-POST", newPostText
-} as const)
+export const addPostAC = (newPostText: string) => {
+  return { type: "ADD-POST", newPostText } as const
+}

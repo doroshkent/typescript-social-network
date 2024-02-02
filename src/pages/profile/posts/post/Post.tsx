@@ -11,7 +11,7 @@ type PostPropsTypes = {
 export const Post: React.FC<PostPropsTypes> = ({ postContent, likesCount }) => {
   return (
     <StyledPost>
-      <FlexWrapper align="center" gap="5px">
+      <FlexWrapper $align="center" $gap="5px">
         <ProfilePhoto src={ avatar } />
         <p>{ postContent }</p>
       </FlexWrapper>
