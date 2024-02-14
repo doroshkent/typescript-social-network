@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { addPostAC, profileReducer, ProfileStateType } from "redux/profileReducer";
+import { addPost, profileReducer, ProfileStateType } from "redux/profileReducer";
 
 const initialState: ProfileStateType = {
   posts: [
@@ -10,7 +10,7 @@ const initialState: ProfileStateType = {
 }
 
 test('new post should be added', () => {
-  const action = addPostAC("new post");
+  const action = addPost("new post");
   const endState = profileReducer(initialState, action);
 
   expect(endState.posts.length).toBe(4);

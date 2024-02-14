@@ -23,7 +23,7 @@ export type DialogType = {
   isOnline: boolean
 }
 
-type SendMessageActionType = ReturnType<typeof sendMessageAC>
+type SendMessageActionType = ReturnType<typeof sendMessage>
 type DialogsActionsTypes = SendMessageActionType
 
 const initialState: DialogsStateType = {
@@ -107,6 +107,6 @@ export const dialogsReducer = (state: DialogsStateType = initialState, action: D
   }
 }
 
-export const sendMessageAC = (newMessageText: string) => ({
+export const sendMessage = (newMessageText: string) => ({
   type: "SEND-MESSAGE", newMessageText
 } as const)

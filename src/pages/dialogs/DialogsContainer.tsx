@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { AppRootStateType } from "redux/store";
-import { DialogType, MessageType, sendMessageAC } from "redux/dialogsReducer";
+import { DialogType, MessageType, sendMessage } from "redux/dialogsReducer";
 import { Dialogs } from "pages/dialogs/Dialogs";
 
 type MapStatePropsType = {
@@ -13,8 +13,6 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
   messages: state.dialogsPage.messages
 })
 
-const DialogsContainer = connect( mapStateToProps, {
-  sendMessage: sendMessageAC
-} )( Dialogs )
+const DialogsContainer = connect( mapStateToProps, { sendMessage } )( Dialogs )
 
 export default DialogsContainer

@@ -2,7 +2,7 @@ import { v1 } from "uuid";
 import yula from "assets/img/avatars/Yuli.png";
 import pan from "assets/img/avatars/Pan.png";
 import me from "assets/img/photo.webp";
-import { dialogsReducer, DialogsStateType, sendMessageAC } from "redux/dialogsReducer";
+import { dialogsReducer, DialogsStateType, sendMessage } from "redux/dialogsReducer";
 
 const initialState: DialogsStateType = {
     dialogs: [
@@ -36,7 +36,7 @@ const initialState: DialogsStateType = {
 }
 
 test('new message should be sent', () => {
-  const action = sendMessageAC("Hello");
+  const action = sendMessage("Hello");
   const endState = dialogsReducer(initialState, action);
 
   expect(endState.messages.length).toBe(3);

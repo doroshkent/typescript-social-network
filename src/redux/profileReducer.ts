@@ -10,7 +10,7 @@ export type PostType = {
   likesCount: number
 }
 
-type AddPostActionType = ReturnType<typeof addPostAC>
+type AddPostActionType = ReturnType<typeof addPost>
 
 type ProfileActionsTypes = AddPostActionType
 
@@ -41,6 +41,6 @@ export const profileReducer = (state: ProfileStateType = initialState, action: P
   }
 }
 
-export const addPostAC = (newPostText: string) => {
+export const addPost = (newPostText: string) => {
   return { type: "ADD-POST", newPostText } as const
 }
