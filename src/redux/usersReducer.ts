@@ -1,8 +1,7 @@
-import { v4 } from "uuid";
-
 export type UserType = {
   id: string
   fullName: string
+  photoUrl: string
   isFollowed: boolean
   status: string
   location: LocationType
@@ -22,27 +21,7 @@ type SetUsersActionType = ReturnType<typeof setUsers>
 type UsersActionsType = FollowActionType | UnfollowActionType | SetUsersActionType
 
 const initialState: UsersStateType = {
-  users: [
-    {
-      id: v4(),
-      fullName: "Anastasiya",
-      isFollowed: true,
-      status: "creating my own future",
-      location: {
-        country: "Poland",
-        city: "Poznan"
-      }
-    },
-    {
-      id: v4(),
-      fullName: "Maria",
-      isFollowed: false,
-      status: "any",
-      location: {
-        country: "Belarus",
-        city: "Minsk"
-      }
-    } ]
+  users: []
 }
 
 export const usersReducer = (state = initialState, action: UsersActionsType) => {

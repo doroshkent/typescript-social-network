@@ -37,6 +37,11 @@ const initialState: NavbarStateType = {
       title: "Settings",
       id: v1(),
       href: "/settings"
+    },
+    {
+      title: "Users",
+      id: v1(),
+      href: "/users"
     }
   ],
 }
