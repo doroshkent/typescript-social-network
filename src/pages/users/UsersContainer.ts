@@ -3,12 +3,24 @@ import { Users } from "pages/users/Users";
 import { follow, setUsers, unfollow, UserType } from "redux/usersReducer";
 import { AppRootStateType } from "redux/store";
 
-type MapStateToPropsType = {
+type MapStatePropsType = {
   users: UserType[]
 }
 
-const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => ({
+type MapDispatchPropsType = {
+  follow: (id: string) => void
+  unfollow: (id: string) => void
+  setUsers: (users: UserType[]) => void
+}
+
+export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
+
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
   users: state.usersPage.users
 })
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers})(Users)
+const mapDispatchToProps: MapDispatchPropsType = {
+  follow, unfollow, setUsers
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Users )

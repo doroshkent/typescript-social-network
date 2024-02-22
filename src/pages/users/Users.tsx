@@ -1,13 +1,6 @@
 import React from 'react';
-import { UserType } from "redux/usersReducer";
 import { v4 } from "uuid";
-
-type UsersPropsType = {
-  users: UserType[],
-  follow: (id: string) => void
-  unfollow: (id: string) => void
-  setUsers: (users: UserType[]) => void
-}
+import { UsersPropsType } from "pages/users/UsersContainer";
 
 export const Users = ({users, follow, unfollow, setUsers}: UsersPropsType) => {
   if (users.length === 0 ) {

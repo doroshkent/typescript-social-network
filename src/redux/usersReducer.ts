@@ -10,9 +10,6 @@ type LocationType = {
   country: string
   city: string
 }
-export type UsersStateType = {
-  users: UserType[]
-}
 
 type FollowActionType = ReturnType<typeof follow>
 type UnfollowActionType = ReturnType<typeof unfollow>
@@ -20,11 +17,13 @@ type SetUsersActionType = ReturnType<typeof setUsers>
 
 type UsersActionsType = FollowActionType | UnfollowActionType | SetUsersActionType
 
-const initialState: UsersStateType = {
-  users: []
+const initialState = {
+  users: [] as UserType[]
 }
 
-export const usersReducer = (state = initialState, action: UsersActionsType) => {
+export type UsersStateType = typeof initialState
+
+export const usersReducer = (state = initialState, action: UsersActionsType): UsersStateType => {
   switch (action.type) {
     case "FOLLOW": {
       return {
