@@ -1,24 +1,32 @@
 export type UserType = {
-  id: string
-  fullName: string
-  photoUrl: string
-  isFollowed: boolean
-  status: string
-  location: LocationType
-}
-type LocationType = {
-  country: string
-  city: string
+  name: string
+  id: number
+  uniqueUrlName: string | null
+  photos: {
+    small: string | null
+    large: string | null
+  }
+  status: string | null
+  followed: boolean
 }
 
 type FollowActionType = ReturnType<typeof follow>
 type UnfollowActionType = ReturnType<typeof unfollow>
 type SetUsersActionType = ReturnType<typeof setUsers>
+type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
+type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
 
-type UsersActionsType = FollowActionType | UnfollowActionType | SetUsersActionType
+type UsersActionsType = FollowActionType
+  | UnfollowActionType
+  | SetUsersActionType
+  | SetCurrentPageActionType
+  | SetTotalUsersCountActionType
 
 const initialState = {
-  users: [] as UserType[]
+  users: [] as UserType[],
+  pageSize: 10,
+  totalUsersCount: 0,
+  currentPage: 1
 }
 
 export type UsersStateType = typeof initialState
@@ -29,7 +37,7 @@ export const usersReducer = (state = initialState, action: UsersActionsType): Us
       return {
         ...state,
         users: state.users.map( u => u.id === action.id
-          ? { ...u, isFollowed: true }
+          ? { ...u, followed: true }
           : u )
       }
     }
@@ -37,14 +45,26 @@ export const usersReducer = (state = initialState, action: UsersActionsType): Us
       return {
         ...state,
         users: state.users.map( u => u.id === action.id
-          ? { ...u, isFollowed: false }
+          ? { ...u, followed: false }
           : u )
       }
     }
     case "SET_USERS": {
       return {
         ...state,
-        users: [ ...state.users, ...action.users ]
+        users: action.users
+      }
+    }
+    case "SET_CURRENT_PAGE": {
+      return {
+        ...state,
+        currentPage: action.currentPage
+      }
+    }
+    case "SET_TOTAL_USERS_COUNT": {
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount
       }
     }
     default: {
@@ -53,12 +73,12 @@ export const usersReducer = (state = initialState, action: UsersActionsType): Us
   }
 }
 
-export const follow = (id: string) => ({
+export const follow = (id: number) => ({
   type: "FOLLOW",
   id
 } as const)
 
-export const unfollow = (id: string) => ({
+export const unfollow = (id: number) => ({
   type: "UNFOLLOW",
   id
 } as const)
@@ -66,4 +86,14 @@ export const unfollow = (id: string) => ({
 export const setUsers = (users: UserType[]) => ({
   type: "SET_USERS",
   users
+} as const)
+
+export const setCurrentPage = (pageNumber: number) => ({
+  type: "SET_CURRENT_PAGE",
+  currentPage: pageNumber
+} as const)
+
+export const setTotalUsersCount = (totalUsersCount: number) => ({
+  type: "SET_TOTAL_USERS_COUNT",
+  totalUsersCount
 } as const)
