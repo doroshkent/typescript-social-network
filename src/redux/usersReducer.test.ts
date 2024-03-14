@@ -1,4 +1,12 @@
-import { follow, setUsers, unfollow, usersReducer, UsersStateType, UserType } from "redux/usersReducer";
+import {
+  follow,
+  setUsers,
+  setUsersIsFetching,
+  unfollow,
+  usersReducer,
+  UsersStateType,
+  UserType
+} from "redux/usersReducer";
 
 const initialState: UsersStateType = {
   users: [
@@ -26,7 +34,8 @@ const initialState: UsersStateType = {
     } ],
   totalUsersCount: 0,
   currentPage: 1,
-  pageSize: 10
+  pageSize: 10,
+  isFetching: false
 }
 
 test( 'user becomes followed', () => {
@@ -55,4 +64,10 @@ test( 'users are set', () => {
   expect(endState.users[0].id).toBe("user1")
   expect( endState.users[2].id ).toBe("1")
   expect( endState.users[3].id ).toBe("2")
+} )
+
+test( 'should set isFetching', () => {
+  const endState = usersReducer( initialState, setUsersIsFetching(true) );
+
+  expect(endState.isFetching).toBeTruthy()
 } )
