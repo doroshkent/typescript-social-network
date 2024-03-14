@@ -3,6 +3,7 @@ import userImg from "assets/img/avatars/user.png"
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { UserType } from "redux/usersReducer";
+import { Link } from "react-router-dom";
 
 type UsersPropsType = {
   users: UserType[]
@@ -37,10 +38,14 @@ export const Users = ({
         <div key={ u.id }>
           <div>
             <div>
-              <img src={ u.photos.small || userImg } style={ { width: "50px" } } alt={ "alt" } />
+              <Link to={ `/profile/${ u.id }` }>
+                <img src={ u.photos.small || userImg } style={ { width: "50px" } } alt={ "alt" } />
+              </Link>
             </div>
             <div>
-              <div>{ u.name }</div>
+              <Link to={ `/profile/${ u.id }` } style={{color: 'black'}}>
+                <div>{ u.name }</div>
+              </Link>
               <div>{ u.status }</div>
               { u.followed ? (
                 <button onClick={ () => unfollow( u.id ) }>
