@@ -13,7 +13,7 @@ export const AddNewItemForm: React.FC<AddNewItemFormPropsType> = ({btnTitle, add
   }
   const onAddNewItem = () => {
     addNewItem(newItemText);
-
+    setNewItemText('')
   }
   return (
     <AddItemForm>
