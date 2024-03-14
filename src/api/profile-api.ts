@@ -1,7 +1,7 @@
 import { instance } from "api/users-api";
 
 export const profileAPI = {
-  getProfile(userId: number) {
+  getProfile(userId: string) {
     return instance.get<UserProfile>( `profile/${ userId }` )
   }
 }

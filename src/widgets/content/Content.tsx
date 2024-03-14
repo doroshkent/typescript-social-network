@@ -12,9 +12,9 @@ export const Content = () => {
   return (
     <S.Content>
       <Route path="/"
-             render={ () => <Redirect to='/profile' />} />
-      <Route path="/profile"
-             render={ () => <ProfileContainer /> } />
+             render={ () => <Redirect to='/profile' /> } />
+      <Route path="/profile/:userId?"
+             render={ () => <ProfileContainer /> }/>
       <Route path="/dialogs"
              render={ () => <DialogsContainer /> } />
       <Route path="/news" render={ () => <News /> } />
