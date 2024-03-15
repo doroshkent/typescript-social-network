@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
-import { UserProfile } from "api/profile-api";
+import { profileAPI, UserProfile } from "api/profile-api";
+import { Dispatch } from "redux";
 
 const initialState: ProfileStateType = {
   posts: [
@@ -21,7 +22,7 @@ export const profileReducer = (state: ProfileStateType = initialState, action: P
       return { ...state, posts: [ newPost, ...state.posts ] }
     }
     case "SET-PROFILE":
-      return {...state, profileInfo: action.profileInfo}
+      return { ...state, profileInfo: action.profileInfo }
     default: {
       return state
     }
@@ -31,6 +32,14 @@ export const profileReducer = (state: ProfileStateType = initialState, action: P
 // actions
 export const addPost = (newPostText: string) => ({ type: "ADD-POST", newPostText } as const)
 export const setProfile = (profileInfo: UserProfile) => ({ type: "SET-PROFILE", profileInfo } as const)
+
+// thunks
+export const fetchProfile = (id: string) => (dispatch: Dispatch) => {
+  profileAPI.getProfile( id )
+    .then( (res) => {
+      dispatch( setProfile( res.data ) )
+    } )
+}
 
 // types
 export type ProfileStateType = {

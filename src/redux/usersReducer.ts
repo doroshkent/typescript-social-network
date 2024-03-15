@@ -26,9 +26,11 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
     case "SET_USERS_IS_FETCHING":
       return { ...state, isFetching: action.isFetching }
     case "SET_IS_FOLLOWING_PROGRESS": {
-      return { ...state, isFollowingProgress: action.isFetching
-          ? [...state.isFollowingProgress, action.id]
-          : state.isFollowingProgress.filter(id => action.id !== id)}
+      return {
+        ...state, isFollowingProgress: action.isFetching
+          ? [ ...state.isFollowingProgress, action.id ]
+          : state.isFollowingProgress.filter( id => action.id !== id )
+      }
     }
     default:
       return state
@@ -45,16 +47,21 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
   totalUsersCount
 } as const)
 export const setUsersIsFetching = (isFetching: boolean) => ({ type: "SET_USERS_IS_FETCHING", isFetching } as const)
-export const setIsFollowingProgress = (isFetching: boolean, id: number) => ({ type: "SET_IS_FOLLOWING_PROGRESS", isFetching, id } as const)
+export const setIsFollowingProgress = (isFetching: boolean, id: number) => ({
+  type: "SET_IS_FOLLOWING_PROGRESS",
+  isFetching,
+  id
+} as const)
 
 // thunks
 export const fetchUsers = (currentPage: number = 1, pageSize: number = 10) => (dispatch: Dispatch) => {
-  dispatch(setUsersIsFetching( true ));
+  dispatch( setUsersIsFetching( true ) );
   usersAPI.getUsers( pageSize, currentPage )
     .then( (res) => {
-      dispatch(setUsers( res.data.items ))
-      dispatch(setTotalUsersCount( res.data.totalCount ))
-      dispatch(setUsersIsFetching( false ))
+      dispatch( setUsers( res.data.items ) )
+      dispatch( setTotalUsersCount( res.data.totalCount ) )
+      dispatch( setUsersIsFetching( false ) )
+      dispatch( setCurrentPage( currentPage ) )
     } )
 }
 export const follow = (id: number) => (dispatch: Dispatch) => {
