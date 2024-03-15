@@ -48,6 +48,15 @@ export const setUsersIsFetching = (isFetching: boolean) => ({ type: "SET_USERS_I
 export const setIsFollowingProgress = (isFetching: boolean, id: number) => ({ type: "SET_IS_FOLLOWING_PROGRESS", isFetching, id } as const)
 
 // thunks
+export const fetchUsers = (currentPage: number = 1, pageSize: number = 10) => (dispatch: Dispatch) => {
+  dispatch(setUsersIsFetching( true ));
+  usersAPI.getUsers( pageSize, currentPage )
+    .then( (res) => {
+      dispatch(setUsers( res.data.items ))
+      dispatch(setTotalUsersCount( res.data.totalCount ))
+      dispatch(setUsersIsFetching( false ))
+    } )
+}
 export const follow = (id: number) => (dispatch: Dispatch) => {
   dispatch( setIsFollowingProgress( true, id ) );
   usersAPI.follow( id ).then( (res) => {

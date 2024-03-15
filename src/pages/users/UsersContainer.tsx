@@ -1,53 +1,25 @@
 import { connect } from "react-redux";
 import { Users } from "pages/users/Users";
-import {
-  follow,
-  setCurrentPage,
-  setTotalUsersCount,
-  setUsers,
-  setUsersIsFetching,
-  unfollow,
-  UsersStateType,
-  UserType
-} from "redux/usersReducer";
+import { fetchUsers, follow, unfollow, UsersStateType } from "redux/usersReducer";
 import { AppRootStateType } from "redux/store";
 import React from "react";
 import { Spin } from "antd";
-import { usersAPI } from "api/users-api";
 
 export class UsersContainer extends React.Component<UsersContainerPropsType> {
   componentDidMount() {
-    this.props.setUsersIsFetching( true );
-    usersAPI.getUsers( this.props.pageSize, this.props.currentPage )
-      .then( (res) => {
-        this.props.setUsers( res.data.items )
-        this.props.setTotalUsersCount( res.data.totalCount )
-        this.props.setUsersIsFetching( false )
-      } )
+    this.props.fetchUsers()
   }
 
   onPageChanged = (pageNumber: number) => {
-    this.props.setUsersIsFetching( true );
-    this.props.setCurrentPage( pageNumber );
-    usersAPI.getUsers( this.props.pageSize, pageNumber )
-      .then( (res) => {
-        this.props.setUsers( res.data.items )
-        this.props.setUsersIsFetching( false );
-      } )
+    this.props.fetchUsers( pageNumber )
   }
 
   render() {
     return (
       <>{ this.props.isFetching
         ? <Spin size={ "large" } />
-        : <Users users={ this.props.users }
-                 onPageChanged={ this.onPageChanged }
-                 totalUsersCount={ this.props.totalUsersCount }
-                 currentPage={ this.props.currentPage }
-                 pageSize={ this.props.pageSize }
-                 follow={ this.props.follow }
-                 unfollow={ this.props.unfollow }
-                 isFollowingProgress={ this.props.isFollowingProgress } />
+        : <Users { ...this.props }
+                 onPageChanged={ this.onPageChanged } />
       }</>
     )
   }
@@ -63,16 +35,13 @@ const mapStateToProps = (state: AppRootStateType): UsersStateType => ({
 })
 
 export default connect( mapStateToProps, {
-  follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setUsersIsFetching
+  follow, unfollow, fetchUsers
 } )( UsersContainer )
 
 // types
 type MapDispatchPropsType = {
   follow: (id: number) => void
   unfollow: (id: number) => void
-  setUsers: (users: UserType[]) => void
-  setCurrentPage: (pageNumber: number) => void
-  setTotalUsersCount: (totalUsersCount: number) => void
-  setUsersIsFetching: (isFetching: boolean) => void
+  fetchUsers: (currentPage?: number, pageSize?: number) => void
 }
 type UsersContainerPropsType = UsersStateType & MapDispatchPropsType
