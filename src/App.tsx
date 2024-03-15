@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import { Header } from "widgets/header/Header";
 import { GridAppWrapper } from 'components/GridAppWrapper';
 import { Content } from "widgets/content/Content";
 import NavbarContainer from "widgets/navbar/NavbarContainer";
+import HeaderContainer from "widgets/header/HeaderContainer";
 
 const App = () => {
   return (
     <div className="App">
       <GridAppWrapper>
-        <Header />
+        <HeaderContainer />
         <NavbarContainer />
         <Content />
       </GridAppWrapper>
