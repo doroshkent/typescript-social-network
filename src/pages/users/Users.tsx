@@ -13,6 +13,7 @@ type UsersPropsType = {
   follow: (id: number) => void
   unfollow: (id: number) => void
   onPageChanged: (pageNumber: number) => void
+  isFollowingProgress: number[]
 }
 
 export const Users = ({
@@ -22,7 +23,8 @@ export const Users = ({
                         currentPage,
                         follow,
                         unfollow,
-                        onPageChanged
+                        onPageChanged,
+                        isFollowingProgress
                       }: UsersPropsType) => {
 
   return (
@@ -43,16 +45,16 @@ export const Users = ({
               </Link>
             </div>
             <div>
-              <Link to={ `/profile/${ u.id }` } style={{color: 'black'}}>
+              <Link to={ `/profile/${ u.id }` } style={ { color: 'black' } }>
                 <div>{ u.name }</div>
               </Link>
               <div>{ u.status }</div>
               { u.followed ? (
-                <button onClick={ () => unfollow( u.id ) }>
+                <button disabled={ isFollowingProgress.some(id => id === u.id) } onClick={ () => unfollow( u.id ) }>
                   Unfollow
                 </button>
               ) : (
-                <button onClick={ () => follow( u.id ) }>
+                <button disabled={ isFollowingProgress.some(id => id === u.id) } onClick={ () => follow( u.id ) }>
                   Follow
                 </button>
               ) }

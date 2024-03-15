@@ -1,12 +1,14 @@
 import { Dispatch } from "redux";
 import { usersAPI } from "api/users-api";
+import { RESULT_CODE } from "api/auth-api";
 
 const initialState = {
   users: [] as UserType[],
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true
+  isFetching: true,
+  isFollowingProgress: [] as number[]
 }
 
 export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
@@ -21,8 +23,12 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
       return { ...state, currentPage: action.currentPage }
     case "SET_TOTAL_USERS_COUNT":
       return { ...state, totalUsersCount: action.totalUsersCount }
-    case "SET_USERS_IS_FETCHING": {
+    case "SET_USERS_IS_FETCHING":
       return { ...state, isFetching: action.isFetching }
+    case "SET_IS_FOLLOWING_PROGRESS": {
+      return { ...state, isFollowingProgress: action.isFetching
+          ? [...state.isFollowingProgress, action.id]
+          : state.isFollowingProgress.filter(id => action.id !== id)}
     }
     default:
       return state
@@ -39,17 +45,26 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
   totalUsersCount
 } as const)
 export const setUsersIsFetching = (isFetching: boolean) => ({ type: "SET_USERS_IS_FETCHING", isFetching } as const)
+export const setIsFollowingProgress = (isFetching: boolean, id: number) => ({ type: "SET_IS_FOLLOWING_PROGRESS", isFetching, id } as const)
 
 // thunks
 export const follow = (id: number) => (dispatch: Dispatch) => {
-  usersAPI.follow(id).then(() => {
-    dispatch(followAC(id));
-  })
+  dispatch( setIsFollowingProgress( true, id ) );
+  usersAPI.follow( id ).then( (res) => {
+    if (res.data.resultCode === RESULT_CODE.SUCCEEDED) {
+      dispatch( followAC( id ) );
+    }
+    dispatch( setIsFollowingProgress( false, id ) );
+  } )
 }
 export const unfollow = (id: number) => (dispatch: Dispatch) => {
-  usersAPI.unfollow(id).then(() => {
-    dispatch(unfollowAC(id));
-  })
+  dispatch( setIsFollowingProgress( true, id ) )
+  usersAPI.unfollow( id ).then( (res) => {
+    if (res.data.resultCode === RESULT_CODE.SUCCEEDED) {
+      dispatch( unfollowAC( id ) );
+    }
+    dispatch( setIsFollowingProgress( false, id ) )
+  } )
 }
 
 
@@ -80,3 +95,4 @@ type UsersActionsType =
   | SetCurrentPageActionType
   | SetTotalUsersCountActionType
   | ReturnType<typeof setUsersIsFetching>
+  | ReturnType<typeof setIsFollowingProgress>

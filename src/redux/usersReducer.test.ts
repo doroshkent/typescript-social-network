@@ -1,5 +1,5 @@
 import {
-  follow, followAC,
+  follow, followAC, setIsFollowingProgress,
   setUsers,
   setUsersIsFetching,
   unfollow, unfollowAC,
@@ -35,7 +35,8 @@ const initialState: UsersStateType = {
   totalUsersCount: 0,
   currentPage: 1,
   pageSize: 10,
-  isFetching: false
+  isFetching: false,
+  isFollowingProgress: []
 }
 
 test( 'user becomes followed', () => {
@@ -70,4 +71,10 @@ test( 'should set isFetching', () => {
   const endState = usersReducer( initialState, setUsersIsFetching(true) );
 
   expect(endState.isFetching).toBeTruthy()
+} )
+
+test( 'should handle isFollowingProgress', () => {
+  const endState = usersReducer( initialState, setIsFollowingProgress(true, 1) );
+
+  expect(endState.isFollowingProgress).toEqual([1])
 } )

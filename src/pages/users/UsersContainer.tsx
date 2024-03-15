@@ -46,7 +46,8 @@ export class UsersContainer extends React.Component<UsersContainerPropsType> {
                  currentPage={ this.props.currentPage }
                  pageSize={ this.props.pageSize }
                  follow={ this.props.follow }
-                 unfollow={ this.props.unfollow } />
+                 unfollow={ this.props.unfollow }
+                 isFollowingProgress={ this.props.isFollowingProgress } />
       }</>
     )
   }
@@ -57,7 +58,8 @@ const mapStateToProps = (state: AppRootStateType): UsersStateType => ({
   currentPage: state.usersPage.currentPage,
   totalUsersCount: state.usersPage.totalUsersCount,
   pageSize: state.usersPage.pageSize,
-  isFetching: state.usersPage.isFetching
+  isFetching: state.usersPage.isFetching,
+  isFollowingProgress: state.usersPage.isFollowingProgress
 })
 
 export default connect( mapStateToProps, {
