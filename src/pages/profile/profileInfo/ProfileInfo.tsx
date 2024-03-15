@@ -3,8 +3,7 @@ import user from "assets/img/avatars/user.png"
 import styled from "styled-components";
 import { ProfileProps } from "pages/profile/ProfileContainer";
 import { Spin } from "antd";
-import { isAbsoluteURL } from "utils/isAbsoluteUrl";
-import { isNotNull } from "utils/isNotNull";
+import { isAbsoluteURL, isNotNull } from "utils/common-utils";
 
 export const ProfileInfo = ({ profileInfo }: ProfileProps) => {
   if (!profileInfo) {

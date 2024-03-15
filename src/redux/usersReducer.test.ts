@@ -1,8 +1,8 @@
 import {
-  follow,
+  follow, followAC,
   setUsers,
   setUsersIsFetching,
-  unfollow,
+  unfollow, unfollowAC,
   usersReducer,
   UsersStateType,
   UserType
@@ -39,14 +39,14 @@ const initialState: UsersStateType = {
 }
 
 test( 'user becomes followed', () => {
-  const action = follow( 2 );
+  const action = followAC( 2 );
   const endState = usersReducer( initialState, action );
 
   expect( endState.users[1].followed ).toBeTruthy()
 } )
 
 test( 'user becomes unfollowed', () => {
-  const action = unfollow( 1 );
+  const action = unfollowAC( 1 );
   const endState = usersReducer( initialState, action );
 
   expect( endState.users[1].followed ).toBeFalsy()

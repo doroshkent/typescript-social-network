@@ -13,7 +13,7 @@ export enum RESULT_CODE {
   ERROR,
   CAPTCHA = 10
 }
-export type ResponseType<D> = {
+export type ResponseType<D = {}> = {
   resultCode: RESULT_CODE
   messages: Array<string>
   fieldsErrors: Array<string>

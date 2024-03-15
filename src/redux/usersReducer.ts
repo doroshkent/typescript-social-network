@@ -1,3 +1,6 @@
+import { Dispatch } from "redux";
+import { usersAPI } from "api/users-api";
+
 const initialState = {
   users: [] as UserType[],
   pageSize: 10,
@@ -27,8 +30,8 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
 }
 
 // actions
-export const follow = (id: number) => ({ type: "FOLLOW", id } as const)
-export const unfollow = (id: number) => ({ type: "UNFOLLOW", id } as const)
+export const followAC = (id: number) => ({ type: "FOLLOW", id } as const)
+export const unfollowAC = (id: number) => ({ type: "UNFOLLOW", id } as const)
 export const setUsers = (users: UserType[]) => ({ type: "SET_USERS", users } as const)
 export const setCurrentPage = (pageNumber: number) => ({ type: "SET_CURRENT_PAGE", currentPage: pageNumber } as const)
 export const setTotalUsersCount = (totalUsersCount: number) => ({
@@ -36,6 +39,18 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
   totalUsersCount
 } as const)
 export const setUsersIsFetching = (isFetching: boolean) => ({ type: "SET_USERS_IS_FETCHING", isFetching } as const)
+
+// thunks
+export const follow = (id: number) => (dispatch: Dispatch) => {
+  usersAPI.follow(id).then(() => {
+    dispatch(followAC(id));
+  })
+}
+export const unfollow = (id: number) => (dispatch: Dispatch) => {
+  usersAPI.unfollow(id).then(() => {
+    dispatch(unfollowAC(id));
+  })
+}
 
 
 // types
@@ -52,8 +67,8 @@ export type UserType = {
   followed: boolean
 }
 
-type FollowActionType = ReturnType<typeof follow>
-type UnfollowActionType = ReturnType<typeof unfollow>
+type FollowActionType = ReturnType<typeof followAC>
+type UnfollowActionType = ReturnType<typeof unfollowAC>
 type SetUsersActionType = ReturnType<typeof setUsers>
 type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
 type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
